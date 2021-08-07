@@ -1,0 +1,14 @@
+version: "3"
+services: 
+  mqtt:
+    image: eclipse-mosquitto
+    container_name: amqtt
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      # readonly, mount file from host os
+      - /C/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      # read-write, allow application write files into host os
+      - /C/mosquitto/workdir/data:/mosquitto/data:rw
+      - /C/mosquitto/workdir/log:/mosquitto/log:rw
